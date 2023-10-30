@@ -3,7 +3,7 @@
 //
 
 #include <fstream>
-
+#include <unordered_map>
 #include <boost/format.hpp>
 
 #include "local_push_yche.h"
@@ -191,5 +191,3 @@ double Reduced_LocalPush::query_P(int a, int b) {
         return P.query(a, b) / sqrt(2);
     }
 }
-
-

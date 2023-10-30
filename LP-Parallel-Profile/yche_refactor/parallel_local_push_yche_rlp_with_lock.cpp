@@ -6,7 +6,7 @@
 
 #include <algorithm>
 #include <fstream>
-
+#include <unordered_map>
 #include <boost/format.hpp>
 
 #include "parallel_local_push_yche_with_lock.h"
