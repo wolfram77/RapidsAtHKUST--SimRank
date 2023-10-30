@@ -1,4 +1,5 @@
 #include "linearD.h"
+#include <unordered_map>
 
 string LinearD::get_file_path_base() {
     return LINEAR_D_DIR + str(format("%s-%.3f-%s-%s-%s") % g_name % c % T % L % R);
@@ -75,9 +76,9 @@ pair<double, double> LinearD::estimate_SDkk_SEkk(int k) {
     std::unordered_map<int, int> *pre_pos, *next_pos, pre_hash, next_hash;
     pre_pos = &pre_hash;
     next_pos = &next_hash;
-    (*pre_pos)[k] = R; // initially there 
+    (*pre_pos)[k] = R; // initially there
     for (int t = 0; t < T; ++t) {
-        // update 
+        // update
         (*next_pos).clear();
         for (auto &item: (*pre_pos)) {
             int position;
@@ -133,4 +134,3 @@ void LinearD::single_source(int i, VectorXd &r) {
     }
     mem_size = getValue();
 }
-

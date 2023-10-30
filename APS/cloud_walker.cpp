@@ -1,4 +1,5 @@
 #include "cloud_walker.h"
+#include <unordered_map>
 
 string CloudWalker::get_file_path_base(){
     return CLOUD_WALKER_DIR + str(format("%s-%.3f-%s-%s-%s-%s") % g_name % c % T % L % R % R_prime);
@@ -36,7 +37,7 @@ void CloudWalker::mcap(){
     mem_size = getValue();
 }
 
-CloudWalker::CloudWalker(DirectedG * graph, 
+CloudWalker::CloudWalker(DirectedG * graph,
         string name, double c_, int T_, int L_, int R_, int R_prime_){
     c = c_;
     T = T_;
@@ -87,7 +88,7 @@ void CloudWalker::preprocess_D(){
     cout << "computing D"  << endl;
     // use jacobi method to compute D
 
-    vector<std::unordered_map<int,double>> A; // the sparse matrix A for the linear system 
+    vector<std::unordered_map<int,double>> A; // the sparse matrix A for the linear system
     for(int i = 0; i<n; i++){
         A.push_back(std::unordered_map<int,double>());
     }
@@ -107,7 +108,7 @@ void CloudWalker::preprocess_D(){
             // cout << "T: " << t << endl;
             (*next_ptr).clear();
             for(auto &item : (*pre_ptr)){
-                // update a_i 
+                // update a_i
                 int position, number;
                 tie(position,number) = item;
                 A[i][position] += pow(c,t) * pow(double(number) / double(R), 2); // udpate the sparse matrix A
@@ -223,11 +224,11 @@ void CloudWalker::mcss(int i, VectorXd & r){
             double w = v.sum();
             v = v / w;
             auto& u = v; // initial distribution
-            // set up the distribution initial positions  
+            // set up the distribution initial positions
             discrete_distribution<int> dist(u.data(), u.data()+u.size());
             for(size_t k = 0 ; k < R_prime; ++k){ // start random walks
                 auto init_pos = dist(generator1); // sample a starting node
-                // sample out-neighbor, too heavy 
+                // sample out-neighbor, too heavy
                 if(out_degree(init_pos,*g) > 0){
                     /* out-neighbor iterator for weights */
                     // auto out_start = hat_P.valuePtr() + hat_P.outerIndexPtr()[start_pos];
@@ -261,5 +262,3 @@ void CloudWalker::mcss(int i, VectorXd & r){
     }
     mem_size = getValue();
 }
-
-

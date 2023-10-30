@@ -1,5 +1,5 @@
 #include "linearD.h"
-
+#include <unordered_map>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
 
@@ -243,5 +243,3 @@ double LinearD::single_pair(int i, int j, VectorXd &lhs_vec, VectorXd &rhs_vec) 
     res += cur_decay * lhs_vec.cwiseProduct(D).transpose() * (rhs_vec);
     return res;
 }
-
-

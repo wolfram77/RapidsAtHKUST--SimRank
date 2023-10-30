@@ -5,7 +5,7 @@
 #endif
 
 #include <fstream>
-
+#include <unordered_set>
 #include <boost/format.hpp>
 
 #include "parallel_local_push_yche.h"
