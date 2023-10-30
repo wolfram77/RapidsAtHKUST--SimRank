@@ -11,6 +11,13 @@ git submodule init
 git submodule update
 ```
 
+## Compiling
+
+```zsh
+# Required for libtcmalloc
+yum install gperftools gperftools-devel
+```
+
 ## Release Codes (All-In-One-Project)
 
 folder | detail
@@ -29,7 +36,7 @@ folder | detail
 
 ## Others
 
-folder | detail 
+folder | detail
 --- | ---
 [python_experiments](python_experiments) | python scripts for conducting experiments
 [python_playground](python_playground) | python playground
@@ -37,7 +44,7 @@ folder | detail
 
 ## References
 
-If you use the codes in your research, please kindly cite the following papers. 
+If you use the codes in your research, please kindly cite the following papers.
 
 ```
 @inproceedings{wang2018efficient,
